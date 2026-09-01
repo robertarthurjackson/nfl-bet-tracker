@@ -27,19 +27,54 @@ docs/    API.md (contract) · METHOD.md (rendered in-app on the Method page)
 
 ## Setup
 
+### Get it running (no experience needed)
+
+Works on **macOS and Linux**. (Windows: install [WSL](https://learn.microsoft.com/windows/wsl/install) first, then follow the Linux path inside it.)
+
+**Step 1 — Download the app.** Open the Terminal app and paste:
+
 ```bash
-# 1. backend
+git clone https://github.com/robertarthurjackson/nfl-bet-tracker.git
+cd nfl-bet-tracker
+```
+
+(No git? On GitHub click **Code → Download ZIP**, unzip it, then `cd` into the folder.)
+
+**Step 2 — Get your free odds key (2 minutes, optional).**
+The app needs a live feed of betting odds. [The Odds API](https://the-odds-api.com) gives anyone a free
+allowance — 500 updates a month, which is plenty — think of the key as a library card for odds data.
+
+1. Go to the-odds-api.com and click **Get API Key**
+2. Enter your email and pick the **free** plan — no credit card
+3. They send you a key that looks like `3268eeb…` — copy it, the next step asks for it
+
+*No key yet? Skip this — the app runs in demo mode with realistic fake odds, and you can add a key any time.*
+
+**Step 3 — Run one command:**
+
+```bash
+./setup.sh
+```
+
+It checks for the two tools it needs (and installs them if you have [Homebrew](https://brew.sh)), builds
+everything, asks for your key (paste it, or press Enter for demo mode), and starts the app.
+
+**That's it.** Open **http://localhost:8000** in your browser — that's your own copy. Your bets, bankroll
+and key stay on your computer; nothing is uploaded anywhere. Stop it with Ctrl+C, start it again any time
+with `./run.sh`, and re-run `./setup.sh` whenever you want to add or change the key.
+
+### For developers
+
+```bash
 cd api
 uv venv -p 3.12 .venv && uv pip install -e ".[dev]"
 cp .env.example .env            # add ODDS_API_KEY when you have one (free tier: 500 credits/mo)
 .venv/bin/python -m pytest -q   # 15 tests
 
-# 2. frontend
 cd ../web
 npm install
 npm run build                   # -> web/dist, served by the API at /
 
-# 3. run
 cd ..
 ./run.sh                        # API + SPA on http://localhost:8000
 ```
@@ -47,7 +82,7 @@ cd ..
 Dev loop: `./run.sh api` (backend only, auto-reload) and in another terminal `cd web && npm run dev`
 (Vite on :5173, proxies `/api` to :8000). `VITE_MOCK=1 npm run dev` runs the UI on built-in mock data.
 
-**Without an API key** the app runs in *fixture mode*: odds are synthesized from the nflverse consensus
+**Without an API key** the app runs in *demo mode*: odds are synthesized from the nflverse consensus
 line for the current week with realistic book-to-book noise, so every screen works. Snapshots cost 0 credits.
 
 ## Credits (free tier)
