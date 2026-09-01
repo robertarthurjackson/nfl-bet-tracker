@@ -31,6 +31,10 @@ docs/    API.md (contract) · METHOD.md (rendered in-app on the Method page)
 
 Works on **macOS and Linux**. (Windows: install [WSL](https://learn.microsoft.com/windows/wsl/install) first, then follow the Linux path inside it.)
 
+> **Even easier:** paste this page's link into [Claude](https://claude.ai) (or any AI assistant) and say
+> *"walk me through setting this up"* — it will guide you one step at a time and answer questions along the
+> way. If you use [Claude Code](https://claude.com/claude-code) in a terminal, it can do the whole setup for you.
+
 **Step 1 — Download the app.** Open the Terminal app and paste:
 
 ```bash
