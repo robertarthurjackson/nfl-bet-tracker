@@ -665,3 +665,5 @@ input:disabled { opacity: 0.45; }
   border-bottom: 1px solid var(--line, #21262d);
 }
 .demo-banner a { color: var(--accent, #58a6ff); }
+
+.mock-banner { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }

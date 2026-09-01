@@ -56,7 +56,14 @@ export function Layout() {
       </aside>
 
       <main className="content">
-        {USE_MOCK && <div className="mock-banner">Mock data — VITE_MOCK=1. No backend calls are being made.</div>}
+        {USE_MOCK && (
+          <div className="mock-banner">
+            <span>Demo — synthetic odds and bets, nothing is real money.</span>
+            <a className="btn btn-xs" href="https://github.com/robertarthurjackson/nfl-bet-tracker#setup" target="_blank" rel="noreferrer">
+              Get your own free live version
+            </a>
+          </div>
+        )}
         <Outlet />
       </main>
 

@@ -20,12 +20,6 @@ export function App() {
     <ToastProvider>
       <SettingsProvider>
         <Router>
-          {IS_DEMO && (
-            <div className="demo-banner">
-              Demo — synthetic odds and bets, nothing is real money.{' '}
-              <a href="https://github.com/robertarthurjackson/nfl-bet-tracker" target="_blank" rel="noreferrer">Run it yourself</a>
-            </div>
-          )}
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<BoardPage />} />
