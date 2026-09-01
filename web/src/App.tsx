@@ -13,6 +13,7 @@ import { ClvPage } from './pages/Clv'
 import { ForecastsPage } from './pages/Forecasts'
 import { ResearchPage } from './pages/Research'
 import { MethodPage } from './pages/Method'
+import { KellyPage } from './pages/Kelly'
 import { SettingsPage } from './pages/Settings'
 
 export function App() {
@@ -30,6 +31,7 @@ export function App() {
               <Route path="/forecasts" element={<ForecastsPage />} />
               <Route path="/research" element={<ResearchPage />} />
               <Route path="/method" element={<MethodPage />} />
+              <Route path="/method/kelly" element={<KellyPage />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Route>

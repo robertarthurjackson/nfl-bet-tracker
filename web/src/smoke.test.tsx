@@ -7,7 +7,7 @@ import { act } from 'react'
 import { createRoot, type Root } from 'react-dom/client'
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
 
-const ROUTES = ['/', '/opportunities', '/bets', '/bankroll', '/clv', '/forecasts', '/research', '/method', '/settings']
+const ROUTES = ['/', '/opportunities', '/bets', '/bankroll', '/clv', '/forecasts', '/research', '/method', '/method/kelly', '/settings']
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let App: any
