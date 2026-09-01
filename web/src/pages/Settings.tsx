@@ -68,7 +68,13 @@ export function SettingsPage() {
                 <span>Sharp / reference book</span>
                 <input type="text" value={draft.sharp_book} onChange={(e) => patch({ sharp_book: e.target.value })} />
               </label>
-              <NumField label="Credit budget per week" value={draft.credit_budget_per_week} step={5} onChange={(v) => patch({ credit_budget_per_week: v })} />
+              <NumField
+                label="Odds API credits per week"
+                value={draft.credit_budget_per_week}
+                step={5}
+                onChange={(v) => patch({ credit_budget_per_week: v })}
+                help="Spending cap for the odds feed, not betting money. The Odds API free plan allows 500 credits/month, so ~115/week keeps a full season inside it. Closing-line snapshots ignore this cap."
+              />
             </div>
 
             <h3 className="sub-title">Kelly staking</h3>
@@ -165,7 +171,7 @@ export function SettingsPage() {
   )
 }
 
-function NumField({ label, value, step, onChange }: { label: string; value: number; step: number; onChange: (v: number) => void }) {
+function NumField({ label, value, step, onChange, help }: { label: string; value: number; step: number; onChange: (v: number) => void; help?: string }) {
   return (
     <label className="field">
       <span>{label}</span>
@@ -175,6 +181,7 @@ function NumField({ label, value, step, onChange }: { label: string; value: numb
         value={Number.isFinite(value) ? value : ''}
         onChange={(e) => onChange(e.target.value === '' ? 0 : Number(e.target.value))}
       />
+      {help && <span className="field-help">{help}</span>}
     </label>
   )
 }
@@ -272,9 +279,9 @@ function SnapshotsPanel() {
         {(s) => (
           <>
             <div className="tiles">
-              <div className="tile"><div className="tile-k">Credits left</div><div className="tile-v">{s.credits.remaining.toLocaleString()}</div></div>
+              <div className="tile"><div className="tile-k">API credits left</div><div className="tile-v">{s.credits.remaining.toLocaleString()}</div></div>
               <div className="tile"><div className="tile-k">Used this month</div><div className="tile-v">{s.credits.used_month.toLocaleString()}</div></div>
-              <div className="tile"><div className="tile-k">Week budget</div><div className="tile-v">{s.credits.used_week} / {s.credits.budget_week}</div></div>
+              <div className="tile"><div className="tile-k">API credits this week</div><div className="tile-v">{s.credits.used_week} / {s.credits.budget_week}</div></div>
               <div className="tile">
                 <div className="tile-k">Scheduler</div>
                 <div className={`tile-v ${s.scheduler_running ? 'pos' : 'neg'}`}>{s.scheduler_running ? 'running' : 'stopped'}</div>

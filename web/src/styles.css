@@ -667,3 +667,5 @@ input:disabled { opacity: 0.45; }
 .demo-banner a { color: var(--accent, #58a6ff); }
 
 .mock-banner { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+.field-help { font-size: 0.74rem; color: var(--fg-dim, #8b949e); line-height: 1.4; max-width: 34ch; }

@@ -91,12 +91,12 @@ function BoardStrip({ data, threshold }: { data: Board | null; threshold: number
   const c = data.credits
   return (
     <div className="strip">
-      <div className="strip-item">
-        <span className="strip-k">Credits</span>
+      <div className="strip-item" title="The Odds API allowance left this month (the odds feed — not betting money). Free plan: 500/month.">
+        <span className="strip-k">API credits</span>
         <span className="strip-v">{c.remaining.toLocaleString()}</span>
       </div>
-      <div className="strip-item">
-        <span className="strip-k">Week budget</span>
+      <div className="strip-item" title="Odds-feed credits used this week vs the weekly cap from Settings. Not betting money.">
+        <span className="strip-k">API credits (wk)</span>
         <span className="strip-v">{c.used_week} / {c.budget_week}</span>
       </div>
       <div className="strip-item">
