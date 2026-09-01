@@ -694,8 +694,7 @@ input:disabled { opacity: 0.45; }
 @media (prefers-reduced-motion: reduce) { .kelly-section.flash { animation: none; box-shadow: 0 0 0 2px var(--accent, #58a6ff); } }
 .calc-inputs { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
 .calc-verdict { color: var(--fg-dim); max-width: 60ch; }
-.deep-dive { display: flex; align-items: center; justify-content: space-between; gap: 12px; text-decoration: none; margin-bottom: 14px; }
-.deep-dive-title { font-weight: 600; color: var(--fg); }
-.deep-dive-sub { font-size: 0.82rem; color: var(--fg-dim); }
-.deep-dive-arrow { color: var(--accent, #58a6ff); font-size: 1.3rem; }
-.deep-dive:hover .deep-dive-title { color: var(--accent, #58a6ff); }
+
+.side-sub { padding-left: 44px; font-size: 0.85rem; color: var(--fg-dim); }
+.side-sub.active { color: var(--accent, #58a6ff); }
+.sheet-sub { padding-left: 52px; font-size: 0.9rem; }

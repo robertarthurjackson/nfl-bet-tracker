@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactElement } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { USE_MOCK } from '../api'
 
-interface NavItem { to: string; label: string; icon: ReactElement; primary?: boolean }
+interface NavItem { to: string; label: string; icon?: ReactElement; primary?: boolean; sub?: boolean }
 
 const I = (d: string, extra?: ReactElement) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -20,6 +20,7 @@ const NAV: NavItem[] = [
   { to: '/forecasts', label: 'Shadow', icon: I('M12 5c-5 0-8 7-8 7s3 7 8 7 8-7 8-7-3-7-8-7z', <circle cx="12" cy="12" r="2.6" />) },
   { to: '/research', label: 'Research', icon: I('M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 21l-4.5-4.5') },
   { to: '/method', label: 'Method', icon: I('M5 4h11l3 3v13H5zM8 10h8M8 14h8M8 18h5') },
+  { to: '/method/kelly', label: 'Kelly formula', sub: true },
   { to: '/settings', label: 'Settings', icon: I('M12 9.2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6zM19.4 13.5l1.7 1.3-1.8 3.1-2-.8a7.6 7.6 0 0 1-1.8 1l-.3 2.1h-3.6l-.3-2.1a7.6 7.6 0 0 1-1.8-1l-2 .8-1.8-3.1 1.7-1.3a7.4 7.4 0 0 1 0-2.1L4.7 10l1.8-3.1 2 .8a7.6 7.6 0 0 1 1.8-1l.3-2.1h3.6l.3 2.1c.64.25 1.24.58 1.8 1l2-.8L19.9 10l-1.7 1.3c.07.7.07 1.41 0 2.1z') },
 ]
 
@@ -47,8 +48,8 @@ export function Layout() {
         </div>
         <nav>
           {NAV.map((n) => (
-            <NavLink key={n.to} to={n.to} end={n.to === '/'} className="side-link">
-              <span className="nav-icon">{n.icon}</span>
+            <NavLink key={n.to} to={n.to} end={n.to === '/' || n.to === '/method'} className={n.sub ? 'side-link side-sub' : 'side-link'}>
+              {n.icon && <span className="nav-icon">{n.icon}</span>}
               <span>{n.label}</span>
             </NavLink>
           ))}
@@ -72,8 +73,8 @@ export function Layout() {
           <div className="sheet-scrim" onClick={() => setMoreOpen(false)} />
           <div className="sheet" role="dialog" aria-label="More pages">
             {secondary.map((n) => (
-              <NavLink key={n.to} to={n.to} className="sheet-link">
-                <span className="nav-icon">{n.icon}</span>
+              <NavLink key={n.to} to={n.to} end={n.to === '/method'} className={n.sub ? 'sheet-link sheet-sub' : 'sheet-link'}>
+                {n.icon && <span className="nav-icon">{n.icon}</span>}
                 <span>{n.label}</span>
               </NavLink>
             ))}
