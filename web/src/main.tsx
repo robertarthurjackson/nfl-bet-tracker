@@ -4,7 +4,7 @@ import { registerSW } from 'virtual:pwa-register'
 import { App } from './App'
 import './styles.css'
 
-registerSW({ immediate: true })
+if (import.meta.env.VITE_DEMO !== '1') registerSW({ immediate: true })
 
 const el = document.getElementById('root')
 if (!el) throw new Error('#root not found')

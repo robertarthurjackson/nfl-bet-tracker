@@ -1,4 +1,7 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, HashRouter, Navigate, Route, Routes } from 'react-router-dom'
+
+const IS_DEMO = import.meta.env.VITE_DEMO === '1'
+const Router = IS_DEMO ? HashRouter : BrowserRouter
 import { Layout } from './components/Layout'
 import { ToastProvider } from './components/Toast'
 import { SettingsProvider } from './lib/settings-context'
@@ -16,7 +19,13 @@ export function App() {
   return (
     <ToastProvider>
       <SettingsProvider>
-        <BrowserRouter>
+        <Router>
+          {IS_DEMO && (
+            <div className="demo-banner">
+              Demo — synthetic odds and bets, nothing is real money.{' '}
+              <a href="https://github.com/robertarthurjackson/nfl-bet-tracker" target="_blank" rel="noreferrer">Run it yourself</a>
+            </div>
+          )}
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<BoardPage />} />
@@ -31,7 +40,7 @@ export function App() {
               <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
           </Routes>
-        </BrowserRouter>
+        </Router>
       </SettingsProvider>
     </ToastProvider>
   )

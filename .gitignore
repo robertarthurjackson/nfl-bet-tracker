@@ -18,3 +18,4 @@ web/dist/
 api/data/*.db-*
 api/data/*.log
 web/dev-dist/
+web/demo-dist/

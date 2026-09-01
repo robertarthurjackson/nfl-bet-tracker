@@ -654,3 +654,14 @@ input:disabled { opacity: 0.45; }
 .prose blockquote { margin: 0 0 10px; padding-left: 12px; border-left: 3px solid var(--line); color: var(--fg-mute); }
 .prose table { width: 100%; border-collapse: collapse; font-size: 0.84rem; margin-bottom: 12px; }
 .prose th, .prose td { border: 1px solid var(--line); padding: 5px 8px; text-align: left; }
+
+/* demo build banner */
+.demo-banner {
+  background: var(--accent-dim, #1c2a3a);
+  color: var(--fg, #e6edf3);
+  font-size: 0.78rem;
+  text-align: center;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--line, #21262d);
+}
+.demo-banner a { color: var(--accent, #58a6ff); }
