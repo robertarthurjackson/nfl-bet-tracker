@@ -58,9 +58,9 @@ export function Layout() {
       <main className="content">
         {USE_MOCK && (
           <div className="mock-banner">
-            <span>Demo — synthetic odds and bets, nothing is real money.</span>
+            <span>These odds are fake. The real thing is free — all you need is a free API key.</span>
             <a className="btn btn-xs" href="https://github.com/robertarthurjackson/nfl-bet-tracker#setup" target="_blank" rel="noreferrer">
-              Get your own free live version
+              Get yours here
             </a>
           </div>
         )}
