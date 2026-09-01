@@ -143,8 +143,8 @@ function GameCard({
     price_american: row.price_american,
     fair_p: row.fair_p,
     ev_pct: row.ev_pct,
-    kelly_fraction_used: row.kelly.fraction_used ?? kellyFraction,
-    recommended_stake: row.kelly.recommended_stake,
+    kelly_fraction_used: row.kelly?.fraction_used ?? kellyFraction,
+    recommended_stake: row.kelly?.recommended_stake ?? null,
     trigger: row.is_stale_candidate ? 'stale' : (row.ev_pct ?? 0) >= threshold ? 'threshold' : 'manual',
   }), [game, kellyFraction, threshold])
 
@@ -165,7 +165,7 @@ function GameCard({
       <div className="fairbox">
         <div className="fairbox-head">
           <span>Fair line</span>
-          <span className="fairbox-src">{game.fair.source} · {ago(game.fair.updated_at)}</span>
+          <span className="fairbox-src">{game.fair.source ? `${game.fair.source} · ${ago(game.fair.updated_at)}` : 'no reference price yet'}</span>
         </div>
         <div className="fairbox-grid">
           <div><span className="k">{game.home} ML</span><span className="v">{prob(game.fair.home_ml_p)}</span></div>
@@ -299,8 +299,8 @@ function MarketRowLine({
       <td className="num">{prob(row.fair_p)}</td>
       <td className={`num ev ${(row.ev_pct ?? 0) > 0 ? 'pos' : 'neg'}`}>{pct(row.ev_pct)}</td>
       <td className="num">
-        {money(row.kelly.recommended_stake)}
-        {row.kelly.capped && <span className="badge badge-cap" title={row.kelly.cap_reason ?? 'capped'}>cap</span>}
+        {money(row.kelly?.recommended_stake)}
+        {row.kelly?.capped && <span className="badge badge-cap" title={row.kelly.cap_reason ?? 'capped'}>cap</span>}
       </td>
       <td className="col-act">
         <button type="button" className="btn btn-xs" onClick={() => onLog(row)}>Log</button>

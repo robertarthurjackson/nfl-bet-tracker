@@ -448,6 +448,32 @@ function buildBoard(week: number): Board {
     },
     markets: buildRows(def, state.settings, bankroll, fraction),
   }))
+  // One game with no reference price yet (books have posted, sharp hasn't):
+  // fair, fair_p, ev_pct and kelly are all null. Regression case for the board.
+  games.push({
+    game_id: '2026_01_DAL_NYG',
+    kickoff: '2026-09-13T20:25:00+00:00',
+    week,
+    home: 'NYG', away: 'DAL', home_name: 'New York Giants', away_name: 'Dallas Cowboys',
+    fair: { source: null, updated_at: null, home_ml_p: null, away_ml_p: null, fair_spread: null, fair_total: null },
+    markets: (['home', 'away'] as const).flatMap((side) => (['fanduel', 'betmgm'] as const).map((book) => ({
+      market: 'h2h' as const,
+      side,
+      book,
+      book_name: book === 'fanduel' ? 'FanDuel' : 'BetMGM',
+      jurisdiction: 'AB' as const,
+      line: null,
+      price_american: side === 'home' ? -120 : 100,
+      price_decimal: side === 'home' ? 1.833 : 2.0,
+      implied_p: side === 'home' ? 0.5455 : 0.5,
+      fair_p: null,
+      ev_pct: null,
+      kelly: null,
+      is_best_price: false,
+      is_stale_candidate: false,
+      last_update: FETCHED_AT,
+    }))),
+  })
   return {
     season: state.settings.season,
     week,

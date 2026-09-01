@@ -67,7 +67,7 @@ describe('board', () => {
       expect(game.markets.length).toBeGreaterThan(0)
       for (const row of game.markets) {
         expectKeys(row, MARKET_ROW)
-        expectKeys(row.kelly, KELLY)
+        if (row.kelly) expectKeys(row.kelly, KELLY)
         expect(MARKETS).toContain(row.market)
         expect(SIDES).toContain(row.side)
         expect(JURISDICTIONS).toContain(row.jurisdiction)
@@ -114,7 +114,9 @@ describe('board', () => {
         for (const s of SIDES) {
           const group = g.markets.filter((r) => r.market === m && r.side === s)
           if (group.length === 0) continue
-          expect(group.filter((r) => r.is_best_price).length).toBe(1)
+          // a group with no fair price (unpriced game) has no best price to mark
+          const expected = group.some((r) => r.ev_pct !== null) ? 1 : 0
+          expect(group.filter((r) => r.is_best_price).length).toBe(expected)
         }
       }
     }

@@ -82,7 +82,7 @@ export function OpportunitiesPage() {
                     <div><span className="k">Price</span><span className="v price">{american(o.price_american)}</span></div>
                     <div><span className="k">Fair</span><span className="v">{prob(o.fair_p)}</span></div>
                     <div><span className="k">EV</span><span className="v pos">{pct(o.ev_pct)}</span></div>
-                    <div><span className="k">Stake</span><span className="v">{money(o.kelly.recommended_stake)}</span></div>
+                    <div><span className="k">Stake</span><span className="v">{money(o.kelly?.recommended_stake)}</span></div>
                   </div>
                   <div className="opp-actions">
                     <button
@@ -94,8 +94,8 @@ export function OpportunitiesPage() {
                         book: o.book, book_name: o.book_name,
                         price_american: o.price_american,
                         fair_p: o.fair_p, ev_pct: o.ev_pct,
-                        kelly_fraction_used: o.kelly.fraction_used,
-                        recommended_stake: o.kelly.recommended_stake,
+                        kelly_fraction_used: o.kelly?.fraction_used ?? null,
+                        recommended_stake: o.kelly?.recommended_stake ?? null,
                         trigger: o.trigger,
                       })}
                     >

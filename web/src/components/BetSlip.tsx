@@ -19,7 +19,7 @@ export interface BetSlipSeed {
   fair_p: number | null
   ev_pct: number | null
   kelly_fraction_used: number | null
-  recommended_stake: number
+  recommended_stake: number | null
   trigger: Trigger
 }
 

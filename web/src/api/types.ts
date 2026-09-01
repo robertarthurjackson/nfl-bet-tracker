@@ -51,8 +51,8 @@ export interface Credits {
 }
 
 export interface FairLine {
-  source: string
-  updated_at: string
+  source: string | null
+  updated_at: string | null
   home_ml_p: number | null
   away_ml_p: number | null
   fair_spread: number | null
@@ -81,7 +81,7 @@ export interface MarketRow {
   implied_p: number
   fair_p: number | null
   ev_pct: number | null
-  kelly: KellyInfo
+  kelly: KellyInfo | null
   is_best_price: boolean
   is_stale_candidate: boolean
   last_update: string
